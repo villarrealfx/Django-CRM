@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, AddRecordForm
 from .models import Record
 
 def home(request):
@@ -57,4 +57,27 @@ def customer_record(request, pk):
     
     else:
         messages.success(request, "Registro no encontrado")
+        return redirect('home')
+    
+def delete_record(request, pk):
+    if request.user.is_authenticated:
+        delete_it = Record.objects.get(id=pk)
+        delete_it.delete()
+        messages.success(request, "Registro eliminado correctamente")
+        return redirect('home')
+    else:
+        messages.success(request, "Usted debe estar logeado para realizar esta acción")
+        return redirect('home')
+    
+def add_record(request):
+    form = AddRecordForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            if form.is_valid():
+                add_record = form.save()
+                messages.success(request, "Registro ingresado correctamente")
+                return redirect('home')
+        return render(request, 'add_record.html', {"form":form})
+    else:
+        messages.success(request, "Usted debe estar logeado para realizar esta acción")
         return redirect('home')
