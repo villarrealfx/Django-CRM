@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Customer Record:</h1>
+
+<h2>{{ customer_record}}</h2>
+<strong>Email:</strong> {{ customer_record.email }} <br>
+<strong>Phone:</strong> {{ customer_record.phone }} <br>
+<strong>Address:</strong> {{ customer_record.address }} <br>
+<strong>City:</strong> {{ customer_record.city }} <br>
+<strong>State:</strong> {{ customer_record.state }} <br>
+<strong>Zipcode:</strong> {{ customer_record.zipcode }} <br>
+<strong>Create at:</strong> {{ customer_record.create_at }} <br>
+
+
+<a href="{% url "home" %}" class="btn btn-secondary mt-4 me-4">Regresar</a>
+<a href="" class="btn btn-danger mt-4">Borrar</a>
+
+
+{% endblock content %}
