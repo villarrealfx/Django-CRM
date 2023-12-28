@@ -14,8 +14,8 @@
 <strong>Create at:</strong> {{ customer_record.create_at }} <br>
 
 
-<a href="{% url "home" %}" class="btn btn-secondary mt-4 me-4">Regresar</a>
-<a href="{% url "delete_record" customer_record.id %}" class="btn btn-danger mt-4">Borrar</a>
-
+<a href="{% url "home" %}" class="btn btn-secondary mt-4 me-2">Regresar</a>
+<a href="{% url "delete_record" customer_record.id %}" class="btn btn-danger mt-4 me-2">Borrar</a>
+<a href="{% url "update_record" customer_record.id %}" class="btn btn-secondary mt-4 me-2">Update</a>
 
 {% endblock content %}
